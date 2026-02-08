@@ -6,6 +6,7 @@
 // - Prettier compatibility (disables conflicting formatting rules)
 
 import js from '@eslint/js';
+import globals from 'globals';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import prettier from 'eslint-config-prettier';
@@ -30,7 +31,7 @@ export default [
       '**/coverage/**',
       '**/.turbo/**',
       '**/src-tauri/target/**',
-      '**/src/gen/**' // your api-client generated SDK
+      '**/src/gen/**', // your api-client generated SDK
     ],
   },
 
@@ -121,6 +122,29 @@ export default [
 
       // React 17+ JSX transform
       'react/react-in-jsx-scope': 'off',
+    },
+  },
+
+  // Node env for config files (metro/babel/jest/eslint/prettier etc.)
+  {
+    files: [
+      '**/*.config.{js,cjs,mjs}',
+      '**/*.rc.{js,cjs,mjs}',
+      '**/{babel,metro,jest}.config.{js,cjs,mjs}',
+      'apps/**/.eslintrc.{js,cjs,mjs}',
+      'apps/**/.prettierrc.{js,cjs,mjs}',
+    ],
+    languageOptions: {
+      globals: globals.node,
+      sourceType: 'commonjs',
+    },
+  },
+
+  // Jest env for tests
+  {
+    files: ['**/__tests__/**/*.{ts,tsx,js,jsx}', '**/*.{test,spec}.{ts,tsx,js,jsx}'],
+    languageOptions: {
+      globals: globals.jest,
     },
   },
 

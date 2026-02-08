@@ -1,5 +1,0 @@
-
-
-> @monorepo/contracts@0.0.0 typecheck /Users/gaddar/WebstormProjects/Monorepo/packages/contracts
-> tsc -p tsconfig.json --noEmit
-

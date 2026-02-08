@@ -1,7 +1,0 @@
-Request failed with status 404: Not Found
-Error: Request failed with status 404: Not Found
-    at uo (/Users/gaddar/WebstormProjects/Monorepo/node_modules/.pnpm/@hey-api+openapi-ts@0.64.15_typescript@5.9.3/node_modules/@hey-api/openapi-ts/dist/index.cjs:14:90675)
-    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
-    at async Promise.all (index 0)
-    at async pj (/Users/gaddar/WebstormProjects/Monorepo/node_modules/.pnpm/@hey-api+openapi-ts@0.64.15_typescript@5.9.3/node_modules/@hey-api/openapi-ts/dist/index.cjs:1311:4503)
-    at async start (/Users/gaddar/WebstormProjects/Monorepo/node_modules/.pnpm/@hey-api+openapi-ts@0.64.15_typescript@5.9.3/node_modules/@hey-api/openapi-ts/bin/index.cjs:124:21)
