@@ -11,3 +11,6 @@ apps/web/dist
 
 # Husky internal
 .husky/_/
+
+# Build outputs
+**/dist/

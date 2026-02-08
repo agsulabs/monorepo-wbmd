@@ -5,17 +5,17 @@
 // 1) подключаем общий init API
 // 2) рендерим App
 
-import React from "react";
-import ReactDOM from "react-dom/client";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
 // Важно: этот импорт должен выполниться ДО любых вызовов SDK,
 // чтобы initApiClient успел выставить baseUrl.
-import "./shared/api/init";
+import './shared/api/init';
 
-import { App } from "./App";
+import { App } from './App';
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );

@@ -14,7 +14,7 @@
  * - чтобы у всех платформ был одинаковый паттерн подключения
  */
 
-import { client } from "./gen/client.gen";
+import { client } from './gen/client.gen';
 
 /**
  * Инициализирует SDK-клиент.
@@ -30,7 +30,7 @@ export function initApiClient(baseUrl: string) {
    * Нормализуем baseUrl: убираем слэш на конце,
    * чтобы не получать двойные слэши при склейке URL.
    */
-  const normalized = baseUrl.replace(/\/+$/, "");
+  const normalized = baseUrl.replace(/\/+$/, '');
 
   /**
    * Применяем конфигурацию.

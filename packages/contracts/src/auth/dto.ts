@@ -1,4 +1,4 @@
-import type { AuthTokensDTO } from "./tokens";
+import type { AuthTokensDTO } from './tokens';
 
 export type LoginRequestDTO = {
   email: string;

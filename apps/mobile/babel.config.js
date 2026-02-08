@@ -10,5 +10,5 @@ module.exports = {
         allowUndefined: true,
       },
     ],
-  ]
+  ],
 };

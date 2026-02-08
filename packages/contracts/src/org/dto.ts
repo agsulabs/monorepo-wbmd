@@ -1,4 +1,4 @@
-import type { MembershipRole } from "../auth/roles";
+import type { MembershipRole } from '../auth/roles';
 
 export type OrganizationDTO = {
   id: string;
@@ -11,7 +11,7 @@ export type MembershipDTO = {
   orgId: string;
   userId: string;
   role: MembershipRole;
-  status: "ACTIVE" | "PENDING";
+  status: 'ACTIVE' | 'PENDING';
 };
 
 export type CreateOrgRequestDTO = {

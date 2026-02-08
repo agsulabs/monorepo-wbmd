@@ -17,8 +17,8 @@
  * - setHealth: только объект, никакого unknown/boolean
  */
 
-import React, { useEffect, useState } from "react";
-import { appControllerHealth } from "@monorepo/api-client";
+import React, { useEffect, useState } from 'react';
+import { appControllerHealth } from '@monorepo/api-client';
 
 /**
  * Импортируем ТИП DTO напрямую из api-client.
@@ -26,7 +26,7 @@ import { appControllerHealth } from "@monorepo/api-client";
  *
  * Важно: это type-only импорт, он не влияет на runtime.
  */
-import type { HealthResponseDto } from "@monorepo/api-client";
+import type { HealthResponseDto } from '@monorepo/api-client';
 
 export function App() {
   /**
@@ -76,9 +76,9 @@ export function App() {
 
         if (
           data &&
-          typeof data === "object" &&
-          "ok" in data &&
-          typeof (data as any).ok === "boolean"
+          typeof data === 'object' &&
+          'ok' in data &&
+          typeof (data as any).ok === 'boolean'
         ) {
           setHealth(data as HealthResponseDto);
         } else {
@@ -86,20 +86,20 @@ export function App() {
            * Если вдруг data не того вида — фиксируем ошибку,
            * чтобы сразу увидеть проблему контракта/генерации.
            */
-          setError("Health response has unexpected shape");
+          setError('Health response has unexpected shape');
           setHealth(null);
         }
 
         /**
          * Полный ответ в консоль для дебага.
          */
-        console.log("health response:", res);
+        console.log('health response:', res);
       } catch (e) {
         if (!alive) return;
 
         const msg = e instanceof Error ? e.message : String(e);
         setError(msg);
-        console.error("health error:", e);
+        console.error('health error:', e);
       }
     })();
 
@@ -114,12 +114,12 @@ export function App() {
 
       <div style={{ marginTop: 12 }}>
         {/* Ошибка */}
-        {error && <div style={{ color: "crimson" }}>Error: {error}</div>}
+        {error && <div style={{ color: 'crimson' }}>Error: {error}</div>}
 
         {/* Успех: health.ok типобезопасно, потому что health = HealthResponseDto */}
         {health && (
           <div>
-            <div>Health OK: {health.ok ? "true" : "false"}</div>
+            <div>Health OK: {health.ok ? 'true' : 'false'}</div>
             <pre>{JSON.stringify(health, null, 2)}</pre>
           </div>
         )}

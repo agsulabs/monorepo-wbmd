@@ -7,12 +7,12 @@
  * - генератор OpenAPI увидит { ok: boolean }
  */
 
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class HealthResponseDto {
   @ApiProperty({
     example: true,
-    description: "Backend is alive and responding",
+    description: 'Backend is alive and responding',
   })
   ok!: boolean;
 }

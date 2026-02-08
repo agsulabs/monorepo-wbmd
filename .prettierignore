@@ -13,3 +13,6 @@
 
 # Lockfiles / artifacts (optional)
 pnpm-lock.yaml
+
+# React Native (3rd-party Ruby bundle)
+apps/mobile/vendor/

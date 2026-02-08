@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /**
  * packages/api-client/src/init.ts
  *
@@ -14,9 +14,9 @@
  * - чтобы не дублировать client.setConfig(...) в каждом приложении
  * - чтобы у всех платформ был одинаковый паттерн подключения
  */
-Object.defineProperty(exports, "__esModule", { value: true });
+Object.defineProperty(exports, '__esModule', { value: true });
 exports.initApiClient = initApiClient;
-var client_gen_1 = require("./gen/client.gen");
+var client_gen_1 = require('./gen/client.gen');
 /**
  * Инициализирует SDK-клиент.
  *
@@ -27,16 +27,16 @@ var client_gen_1 = require("./gen/client.gen");
  *   http://192.168.0.10:3001
  */
 function initApiClient(baseUrl) {
-    /**
-     * Нормализуем baseUrl: убираем слэш на конце,
-     * чтобы не получать двойные слэши при склейке URL.
-     */
-    var normalized = baseUrl.replace(/\/+$/, "");
-    /**
-     * Применяем конфигурацию.
-     * После этого все вызовы из sdk.gen.ts идут на этот baseUrl.
-     */
-    client_gen_1.client.setConfig({
-        baseUrl: normalized,
-    });
+  /**
+   * Нормализуем baseUrl: убираем слэш на конце,
+   * чтобы не получать двойные слэши при склейке URL.
+   */
+  var normalized = baseUrl.replace(/\/+$/, '');
+  /**
+   * Применяем конфигурацию.
+   * После этого все вызовы из sdk.gen.ts идут на этот baseUrl.
+   */
+  client_gen_1.client.setConfig({
+    baseUrl: normalized,
+  });
 }

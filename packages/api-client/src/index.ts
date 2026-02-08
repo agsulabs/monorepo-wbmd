@@ -6,11 +6,11 @@
  * - плюс ручные помощники (init)
  */
 
-export * from "./gen/types.gen";
-export * from "./gen/sdk.gen";
-export * from "./gen/client.gen";
+export * from './gen/types.gen';
+export * from './gen/sdk.gen';
+export * from './gen/client.gen';
 
 /**
  * Ручной helper для инициализации клиента (НЕ автоген).
  */
-export * from "./init";
+export * from './init';

@@ -12,14 +12,14 @@
  * - слушаем 0.0.0.0 чтобы mobile мог подключаться по LAN IP
  */
 
-import { NestFactory } from "@nestjs/core";
-import { AppModule } from "./app.module";
-import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 /**
  * Типы express Request/Response, чтобы не было implicit any (TS7006)
  */
-import type { Request, Response } from "express";
+import type { Request, Response } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -33,22 +33,22 @@ async function bootstrap() {
    */
   app.enableCors({
     origin: [
-      "http://localhost:5173",
-      "http://127.0.0.1:5173",
-      "http://localhost:5174",
-      "http://127.0.0.1:5174",
+      'http://localhost:5173',
+      'http://127.0.0.1:5173',
+      'http://localhost:5174',
+      'http://127.0.0.1:5174',
     ],
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 
   /**
    * Swagger базовая конфигурация.
    */
   const swaggerConfig = new DocumentBuilder()
-    .setTitle("Monorepo API")
-    .setDescription("Backend API for web/desktop/mobile")
-    .setVersion("1.0.0")
+    .setTitle('Monorepo API')
+    .setDescription('Backend API for web/desktop/mobile')
+    .setVersion('1.0.0')
     .build();
 
   /**
@@ -59,7 +59,7 @@ async function bootstrap() {
   /**
    * Swagger UI по /api
    */
-  SwaggerModule.setup("api", app, document);
+  SwaggerModule.setup('api', app, document);
 
   /**
    * OpenAPI JSON по /api-json (стабильно для генерации).
@@ -68,8 +68,8 @@ async function bootstrap() {
    * - Nest сам по себе не делает /api-json автоматически
    * - поэтому делаем явный маршрут
    */
-  app.use("/api-json", (_req: Request, res: Response) => {
-    res.setHeader("Content-Type", "application/json");
+  app.use('/api-json', (_req: Request, res: Response) => {
+    res.setHeader('Content-Type', 'application/json');
     res.status(200).send(document);
   });
 
@@ -77,7 +77,7 @@ async function bootstrap() {
    * Важно для mobile:
    * - 0.0.0.0 позволяет принимать запросы с других устройств в LAN
    */
-  await app.listen(3001, "0.0.0.0");
+  await app.listen(3001, '0.0.0.0');
 }
 
 bootstrap();

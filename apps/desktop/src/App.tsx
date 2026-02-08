@@ -3,9 +3,9 @@
 // Минимальная проверка, что desktop ходит в backend через SDK.
 // Тут можно оставить как smoke-test и потом удалить/заменить на реальный UI.
 
-import React, { useEffect, useState } from "react";
-import { appControllerHealth } from "@monorepo/api-client";
-import type { HealthResponseDto } from "@monorepo/api-client";
+import React, { useEffect, useState } from 'react';
+import { appControllerHealth } from '@monorepo/api-client';
+import type { HealthResponseDto } from '@monorepo/api-client';
 
 export function App() {
   // null = ещё не загрузили
@@ -41,11 +41,11 @@ export function App() {
     <div style={{ padding: 24 }}>
       <div>Desktop app is running</div>
 
-      {error && <div style={{ color: "crimson", marginTop: 12 }}>Error: {error}</div>}
+      {error && <div style={{ color: 'crimson', marginTop: 12 }}>Error: {error}</div>}
 
       {health && (
         <div style={{ marginTop: 12 }}>
-          <div>Health OK: {health.ok ? "true" : "false"}</div>
+          <div>Health OK: {health.ok ? 'true' : 'false'}</div>
           <pre>{JSON.stringify(health, null, 2)}</pre>
         </div>
       )}

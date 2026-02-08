@@ -6,16 +6,16 @@
  * - явно говорим Swagger: 200 OK -> тип HealthResponseDto
  */
 
-import { Controller, Get } from "@nestjs/common";
-import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
-import { HealthResponseDto } from "./app/dto/health-response.dto";
+import { Controller, Get } from '@nestjs/common';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { HealthResponseDto } from './app/dto/health-response.dto';
 
-@ApiTags("app")
+@ApiTags('app')
 @Controller()
 export class AppController {
-  @Get("health")
+  @Get('health')
   @ApiOkResponse({
-    description: "Health check",
+    description: 'Health check',
     type: HealthResponseDto,
   })
   health(): HealthResponseDto {

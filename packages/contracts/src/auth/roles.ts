@@ -1,1 +1,1 @@
-export type MembershipRole = "MEMBER" | "MANAGER" | "ADMIN";
+export type MembershipRole = 'MEMBER' | 'MANAGER' | 'ADMIN';
