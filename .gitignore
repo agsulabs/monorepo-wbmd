@@ -2,3 +2,6 @@ node_modules
 pnpm-lock.yaml
 .DS_Store
 apps/web/dist
+
+# React Native native build cache
+**/android/app/.cxx/
