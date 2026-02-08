@@ -4,3 +4,7 @@ apps/web/dist
 
 # React Native native build cache
 **/android/app/.cxx/
+
+# Turbo cache
+.turbo/
+**/.turbo/
