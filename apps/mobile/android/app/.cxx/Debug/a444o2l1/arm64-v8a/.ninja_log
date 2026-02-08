@@ -1,0 +1,10 @@
+# ninja log v5
+2	25	0	/Users/gaddar/WebstormProjects/Capstra/android/app/.cxx/Debug/a444o2l1/arm64-v8a/CMakeFiles/cmake.verify_globs	fe1c8fcdde15b815
+1	4423	1749504054838165226	CMakeFiles/appmodules.dir/Users/gaddar/WebstormProjects/Capstra/android/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	922262f427628057
+1	4826	1749504055236662304	CMakeFiles/appmodules.dir/OnLoad.cpp.o	cdf376bb83c71727
+4826	5070	1749504055494149919	/Users/gaddar/WebstormProjects/Capstra/android/app/build/intermediates/cxx/Debug/a444o2l1/obj/arm64-v8a/libappmodules.so	920620d372f1908a
+1	53	0	/Users/gaddar/WebstormProjects/Capstra/android/app/.cxx/Debug/a444o2l1/arm64-v8a/CMakeFiles/cmake.verify_globs	fe1c8fcdde15b815
+10	26	0	/Users/gaddar/WebstormProjects/Capstra/android/app/.cxx/Debug/a444o2l1/arm64-v8a/CMakeFiles/cmake.verify_globs	fe1c8fcdde15b815
+0	18	0	/Users/gaddar/WebstormProjects/Capstra/android/app/.cxx/Debug/a444o2l1/arm64-v8a/CMakeFiles/cmake.verify_globs	fe1c8fcdde15b815
+1	16	0	/Users/gaddar/WebstormProjects/Capstra/android/app/.cxx/Debug/a444o2l1/arm64-v8a/CMakeFiles/cmake.verify_globs	fe1c8fcdde15b815
+1	16	0	/Users/gaddar/WebstormProjects/Capstra/android/app/.cxx/Debug/a444o2l1/arm64-v8a/CMakeFiles/cmake.verify_globs	fe1c8fcdde15b815

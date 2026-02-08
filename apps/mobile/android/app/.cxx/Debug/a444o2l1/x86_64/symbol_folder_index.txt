@@ -1,0 +1,1 @@
+/Users/gaddar/WebstormProjects/Capstra/android/app/build/intermediates/cxx/Debug/a444o2l1/obj/x86_64

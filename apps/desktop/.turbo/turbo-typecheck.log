@@ -1,0 +1,5 @@
+
+
+> @monorepo/desktop@ typecheck /Users/gaddar/WebstormProjects/Monorepo/apps/desktop
+> tsc -p tsconfig.json --noEmit
+

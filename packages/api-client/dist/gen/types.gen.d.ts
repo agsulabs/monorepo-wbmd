@@ -1,0 +1,23 @@
+export type HealthResponseDto = {
+    /**
+     * Backend is alive and responding
+     */
+    ok: boolean;
+};
+export type AppControllerHealthData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/health';
+};
+export type AppControllerHealthResponses = {
+    /**
+     * Health check
+     */
+    200: HealthResponseDto;
+};
+export type AppControllerHealthResponse = AppControllerHealthResponses[keyof AppControllerHealthResponses];
+export type ClientOptions = {
+    baseUrl: string;
+};
+//# sourceMappingURL=types.gen.d.ts.map

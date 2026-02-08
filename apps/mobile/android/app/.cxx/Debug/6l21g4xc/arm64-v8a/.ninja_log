@@ -1,0 +1,11 @@
+# ninja log v5
+17	83	1770551102052595131	build.ninja	b711ed3a2d77cd90
+1	20	0	/Users/gaddar/WebstormProjects/Monorepo/apps/mobile/android/app/.cxx/Debug/6l21g4xc/arm64-v8a/CMakeFiles/cmake.verify_globs	374c46db400c5cfe
+0	3655	1770512917120375306	CMakeFiles/appmodules.dir/Users/gaddar/WebstormProjects/Monorepo/apps/mobile/android/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	a1c01433753622cb
+1	4043	1770512917508115803	CMakeFiles/appmodules.dir/OnLoad.cpp.o	1d871e9fcc8dcd57
+4043	4256	1770512917729142681	/Users/gaddar/WebstormProjects/Monorepo/apps/mobile/android/app/build/intermediates/cxx/Debug/6l21g4xc/obj/arm64-v8a/libappmodules.so	3cbfe673361a8437
+0	8	0	clean	99e192edafb7e980
+0	30	0	/Users/gaddar/WebstormProjects/Monorepo/apps/mobile/android/app/.cxx/Debug/6l21g4xc/arm64-v8a/CMakeFiles/cmake.verify_globs	374c46db400c5cfe
+17	5638	1770551107800365503	CMakeFiles/appmodules.dir/Users/gaddar/WebstormProjects/Monorepo/apps/mobile/android/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	a1c01433753622cb
+18	6049	1770551108212820569	CMakeFiles/appmodules.dir/OnLoad.cpp.o	1d871e9fcc8dcd57
+6049	8495	1770551110664754996	/Users/gaddar/WebstormProjects/Monorepo/apps/mobile/android/app/build/intermediates/cxx/Debug/6l21g4xc/obj/arm64-v8a/libappmodules.so	3cbfe673361a8437

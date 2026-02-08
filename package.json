@@ -1,0 +1,64 @@
+{
+  "name": "monorepo",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.11.0",
+    "pnpm": "9.x"
+  },
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "clean": "turbo run clean",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "desktop:dev": "pnpm -C apps/desktop dev",
+    "desktop:build": "pnpm -C apps/desktop build",
+    "desktop:preview": "pnpm -C apps/desktop preview",
+    "desktop:typecheck": "pnpm -C apps/desktop typecheck",
+    "web:dev": "pnpm -C apps/web dev",
+    "web:build": "pnpm -C apps/web build",
+    "web:preview": "pnpm -C apps/web preview",
+    "web:typecheck": "pnpm -C apps/web typecheck",
+    "backend:dev": "pnpm -C apps/backend dev",
+    "backend:build": "pnpm -C apps/backend build",
+    "backend:start": "pnpm -C apps/backend start",
+    "backend:typecheck": "pnpm -C apps/backend typecheck",
+    "mobile:dev": "pnpm -C apps/mobile start",
+    "mobile:ios": "pnpm -C apps/mobile ios",
+    "mobile:android": "pnpm -C apps/mobile android",
+    "mobile:typecheck": "pnpm -C apps/mobile typecheck",
+    "mobile:pods": "bash -lc 'cd apps/mobile/ios && bundle exec pod install'",
+    "mobile:pods:clean": "bash -lc 'cd apps/mobile/ios && rm -rf Pods Podfile.lock && bundle exec pod install'",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,cjs,mjs,cts,mts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml,css,scss}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.1",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-unused-imports": "^4.3.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.1",
+    "turbo": "^2.1.1",
+    "typescript": "^5.6.2"
+  }
+}

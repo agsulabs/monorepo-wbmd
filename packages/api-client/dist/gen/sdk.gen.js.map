@@ -1,0 +1,1 @@
+{"version":3,"file":"sdk.gen.js","sourceRoot":"","sources":["../../src/gen/sdk.gen.ts"],"names":[],"mappings":"AAAA,qDAAqD;AAIrD,OAAO,EAAE,MAAM,IAAI,aAAa,EAAE,MAAM,cAAc,CAAC;AAgBvD,MAAM,CAAC,MAAM,mBAAmB,GAAG,CAAuC,OAAwD,EAAE,EAAE;IAClI,OAAO,CAAC,OAAO,EAAE,MAAM,IAAI,aAAa,CAAC,CAAC,GAAG,CAAqD;QAC9F,GAAG,EAAE,SAAS;QACd,GAAG,OAAO;KACb,CAAC,CAAC;AACP,CAAC,CAAC"}

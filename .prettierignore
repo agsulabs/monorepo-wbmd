@@ -1,0 +1,15 @@
+# Dependencies / build output
+**/node_modules/**
+**/dist/**
+**/build/**
+**/coverage/**
+**/.turbo/**
+
+# Tauri
+**/src-tauri/target/**
+
+# Generated code (do not format)
+**/src/gen/**
+
+# Lockfiles / artifacts (optional)
+pnpm-lock.yaml

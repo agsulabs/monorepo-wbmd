@@ -1,0 +1,3 @@
+/Users/gaddar/WebstormProjects/Capstra/android/app/.cxx/Debug/a444o2l1/x86_64/CMakeFiles/appmodules.dir
+/Users/gaddar/WebstormProjects/Capstra/android/app/.cxx/Debug/a444o2l1/x86_64/CMakeFiles/edit_cache.dir
+/Users/gaddar/WebstormProjects/Capstra/android/app/.cxx/Debug/a444o2l1/x86_64/CMakeFiles/rebuild_cache.dir
