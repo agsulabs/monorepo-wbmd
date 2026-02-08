@@ -8,3 +8,6 @@ apps/web/dist
 # Turbo cache
 .turbo/
 **/.turbo/
+
+# Husky internal
+.husky/_/
