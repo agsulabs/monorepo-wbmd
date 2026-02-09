@@ -1,16 +1,27 @@
-node_modules
-.DS_Store
-apps/web/dist
+# deps
+node_modules/
 
-# React Native native build cache
-**/android/app/.cxx/
+# OS / IDE
+.DS_Store
+.idea/
 
 # Turbo cache
 .turbo/
 **/.turbo/
 
-# Husky internal
-.husky/_/
-
-# Build outputs
+# build outputs
 **/dist/
+apps/web/dist/
+
+# Android build caches
+**/android/.gradle/
+**/android/build/
+**/android/app/build/
+**/android/app/.cxx/
+
+# iOS build caches
+**/ios/Pods/
+**/ios/build/
+**/DerivedData/
+**/*.xcworkspace/xcuserdata/
+**/*.xcodeproj/xcuserdata/
