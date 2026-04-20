@@ -54,6 +54,17 @@ jobs:
       - name: Check OpenAPI diff
         run: pnpm -C packages/api-client openapi:check
 
+      - name: Generate api-client
+        run: pnpm -C packages/api-client generate
+
+      - name: Check api-client diff
+        run: |
+          if [ -n "$(git status --porcelain --untracked-files=all -- packages/api-client/src/gen)" ]; then
+            echo "api-client is out of date. Run generate and commit changes"
+            git status --porcelain --untracked-files=all -- packages/api-client/src/gen
+            exit 1
+          fi
+
       - name: Stop backend
         if: always()
         run: |
