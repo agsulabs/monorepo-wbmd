@@ -29,3 +29,32 @@ jobs:
 
       - name: Test
         run: pnpm -w test
+
+      - name: Build backend
+        run: pnpm -C apps/backend build
+
+      - name: Start backend
+        run: |
+          node apps/backend/dist/main.js > backend.log 2>&1 &
+          echo $! > backend.pid
+
+      - name: Wait for backend
+        run: |
+          for i in {1..30}; do
+            curl -fsS http://127.0.0.1:3001/health && exit 0
+            sleep 1
+          done
+          echo "Backend did not start in time"
+          cat backend.log || true
+          exit 1
+
+      - name: Fetch OpenAPI snapshot candidate
+        run: pnpm -C packages/api-client openapi:fetch
+
+      - name: Check OpenAPI diff
+        run: pnpm -C packages/api-client openapi:check
+
+      - name: Stop backend
+        if: always()
+        run: |
+          kill $(cat backend.pid) || true
