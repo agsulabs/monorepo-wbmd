@@ -8,6 +8,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+
 import './shared/api/init';
 import { App } from './App';
 

@@ -13,13 +13,10 @@
  */
 
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
-/**
- * Типы express Request/Response, чтобы не было implicit any (TS7006)
- */
 import type { Request, Response } from 'express';
+
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

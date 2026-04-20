@@ -17,9 +17,7 @@
  * - setHealth: только объект, никакого unknown/boolean
  */
 
-import React, { useEffect, useState } from 'react';
 import { appControllerHealth } from '@monorepo/api-client';
-
 /**
  * Импортируем ТИП DTO напрямую из api-client.
  * Он генерится из OpenAPI и у тебя уже существует (grep это подтвердил).
@@ -27,6 +25,7 @@ import { appControllerHealth } from '@monorepo/api-client';
  * Важно: это type-only импорт, он не влияет на runtime.
  */
 import type { HealthResponseDto } from '@monorepo/api-client';
+import React, { useEffect, useState } from 'react';
 
 export function App() {
   /**
@@ -78,7 +77,7 @@ export function App() {
           data &&
           typeof data === 'object' &&
           'ok' in data &&
-          typeof (data as any).ok === 'boolean'
+          typeof (data as Record<string, unknown>).ok === 'boolean'
         ) {
           setHealth(data as HealthResponseDto);
         } else {

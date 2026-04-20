@@ -4,6 +4,10 @@
 // - TypeScript linting everywhere
 // - React linting only for apps/web
 // - Prettier compatibility (disables conflicting formatting rules)
+// - Monorepo architecture guards:
+//   - forbid app -> app imports
+//   - forbid deep imports into package internals
+//   - allow public API imports only
 
 import js from '@eslint/js';
 import globals from 'globals';
@@ -31,7 +35,7 @@ export default [
       '**/coverage/**',
       '**/.turbo/**',
       '**/src-tauri/target/**',
-      '**/src/gen/**', // your api-client generated SDK
+      '**/src/gen/**',
     ],
   },
 
@@ -50,7 +54,6 @@ export default [
       'unused-imports': unusedImportsPlugin,
     },
     rules: {
-      // Keep imports tidy
       'import/order': [
         'warn',
         {
@@ -59,8 +62,42 @@ export default [
         },
       ],
 
-      // Auto-remove unused imports; keep unused vars visible
       'unused-imports/no-unused-imports': 'error',
+
+      // Monorepo guardrails:
+      // 1) apps must not import other apps
+      // 2) packages must be imported only via package root public API
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: [
+            {
+              group: [
+                '@monorepo/web',
+                '@monorepo/web/*',
+                '@monorepo/desktop',
+                '@monorepo/desktop/*',
+                '@monorepo/backend',
+                '@monorepo/backend/*',
+                '@monorepo/mobile',
+                '@monorepo/mobile/*',
+              ],
+              message:
+                'Apps must not import other apps directly. Move shared code to packages/* and import from there.',
+            },
+            {
+              group: ['@monorepo/api-client/*'],
+              message:
+                'Do not use deep imports from @monorepo/api-client. Import only from the package root public API.',
+            },
+            {
+              group: ['@monorepo/contracts/*'],
+              message:
+                'Do not use deep imports from @monorepo/contracts. Import only from the package root public API.',
+            },
+          ],
+        },
+      ],
     },
   },
 
@@ -70,8 +107,6 @@ export default [
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        // Project-aware rules are optional; keep it simple & fast by default.
-        // If you want type-aware linting later, we can add project references.
         ecmaFeatures: { jsx: true },
       },
     },
@@ -83,7 +118,6 @@ export default [
     rules: {
       ...tseslint.configs.recommended.rules,
 
-      // Use TS version instead of base no-unused-vars
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': [
         'warn',
@@ -94,12 +128,11 @@ export default [
         },
       ],
 
-      // Optional: safer defaults
       '@typescript-eslint/consistent-type-imports': ['warn', { prefer: 'type-imports' }],
     },
   },
 
-  // React only for web app (adjust path if needed)
+  // React only for web app
   {
     files: ['apps/web/**/*.{ts,tsx,js,jsx}'],
     plugins: {
@@ -108,6 +141,7 @@ export default [
       'jsx-a11y': jsxA11yPlugin,
     },
     languageOptions: {
+      globals: globals.browser,
       parserOptions: {
         ecmaFeatures: { jsx: true },
       },
@@ -119,21 +153,37 @@ export default [
       ...reactPlugin.configs.recommended.rules,
       ...reactHooksPlugin.configs.recommended.rules,
       ...jsxA11yPlugin.configs.recommended.rules,
-
-      // React 17+ JSX transform
       'react/react-in-jsx-scope': 'off',
     },
   },
 
-  // Node env for config files (metro/babel/jest/eslint/prettier etc.)
+  // Node env for config files
   {
     files: [
-      '**/*.config.{js,cjs,mjs}',
+      '**/*.config.{js,cjs,mjs,ts}',
       '**/*.rc.{js,cjs,mjs}',
-      '**/{babel,metro,jest}.config.{js,cjs,mjs}',
+      '**/{babel,metro,jest}.config.{js,cjs,mjs,ts}',
       'apps/**/.eslintrc.{js,cjs,mjs}',
       'apps/**/.prettierrc.{js,cjs,mjs}',
     ],
+    languageOptions: {
+      globals: globals.node,
+      sourceType: 'commonjs',
+    },
+  },
+
+  // Node ESM scripts
+  {
+    files: ['packages/**/scripts/**/*.{js,mjs,ts}'],
+    languageOptions: {
+      globals: globals.node,
+      sourceType: 'module',
+    },
+  },
+
+  // CommonJS build artifacts kept in source folders
+  {
+    files: ['packages/api-client/src/**/*.js'],
     languageOptions: {
       globals: globals.node,
       sourceType: 'commonjs',

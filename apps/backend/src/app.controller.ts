@@ -8,6 +8,7 @@
 
 import { Controller, Get } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+
 import { HealthResponseDto } from './app/dto/health-response.dto';
 
 @ApiTags('app')
