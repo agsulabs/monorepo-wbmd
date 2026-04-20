@@ -35,3 +35,34 @@ pnpm workspaces + Turborepo monorepo.
 ## CI
 
 GitHub Actions runs install (frozen lockfile) + lint + typecheck + test.
+
+## Versioning (SemVer)
+
+Версионирование следует SemVer: MAJOR.MINOR.PATCH
+
+- PATCH (x.x.1)
+  - багфиксы
+  - не ломает API и контракты
+
+- MINOR (x.1.0)
+  - новая функциональность
+  - обратная совместимость сохраняется
+
+- MAJOR (1.0.0 → 2.0.0)
+  - любые изменения, ломающие API или контракты
+  - требует обновления клиентов (web/mobile/desktop)
+
+## Changelog Policy
+
+- Каждый PR должен добавлять запись в `CHANGELOG.md` (раздел Unreleased)
+- При релизе:
+  - создаётся новая версия
+  - изменения переносятся из Unreleased в новую секцию версии
+
+## OpenAPI Contract Rules
+
+- Backend API (`/api-json`) считается контрактом
+- Любое изменение API:
+  - должно обновить `api-client`
+  - должно обновить `openapi.snapshot.json`
+- CI упадёт, если контракт изменился без обновления snapshot
