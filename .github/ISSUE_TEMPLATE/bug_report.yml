@@ -1,0 +1,100 @@
+name: Bug report
+description: Report a reproducible problem in an app, package, workflow, or repository tooling
+title: 'bug: '
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug.
+
+        Please provide enough detail to reproduce and investigate the issue.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Where does the problem happen?
+      options:
+        - apps/web
+        - apps/mobile
+        - apps/desktop
+        - apps/backend
+        - packages/api-client
+        - packages/contracts
+        - CI/CD
+        - repository tooling
+        - documentation
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Short description of the problem
+      placeholder: Describe the bug clearly and briefly
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact steps to reproduce the issue
+      placeholder: |
+        1. Go to ...
+        2. Run ...
+        3. Click ...
+        4. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+      description: What should have happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: What actually happened?
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Relevant versions and environment details
+      placeholder: |
+        - OS:
+        - Node.js:
+        - pnpm:
+        - device/emulator/browser:
+        - app/package:
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / screenshots / additional context
+      description: Add logs, screenshots, stack traces, or anything else useful
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing issues before creating this report
+          required: true
+        - label: I included enough detail for reproduction
+          required: true
