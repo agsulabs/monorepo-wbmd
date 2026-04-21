@@ -1,16 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Dependencies, Get } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import type {
-  HealthCheckResult,
-  HealthCheckService,
-  MemoryHealthIndicator,
-} from '@nestjs/terminus';
-import { HealthCheck } from '@nestjs/terminus';
+import type { HealthCheckResult } from '@nestjs/terminus';
+import { HealthCheck, HealthCheckService, MemoryHealthIndicator } from '@nestjs/terminus';
 
 import { HealthResponseDto } from './app/dto/health-response.dto';
 
 @ApiTags('health')
 @Controller('health')
+@Dependencies(HealthCheckService, MemoryHealthIndicator)
 export class AppController {
   constructor(
     private readonly healthCheckService: HealthCheckService,
