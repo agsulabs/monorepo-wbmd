@@ -17,7 +17,7 @@ import process from 'node:process';
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import type { Request, Response } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 
 import { AppModule } from './app.module';
 
@@ -42,6 +42,17 @@ async function bootstrap() {
     ],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
+  });
+
+  app.use((req: Request, res: Response, next: NextFunction) => {
+    const startedAt = Date.now();
+
+    res.on('finish', () => {
+      const durationMs = Date.now() - startedAt;
+      logger.log(`${req.method} ${req.originalUrl} ${res.statusCode} - ${durationMs}ms`);
+    });
+
+    next();
   });
 
   /**
