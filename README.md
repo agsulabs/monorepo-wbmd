@@ -30,39 +30,69 @@ pnpm workspaces + Turborepo monorepo.
 - pnpm -w lint
 - pnpm -w typecheck
 - pnpm -w test
+- pnpm smoke
 - pnpm -w dev
 
 ## CI
 
-GitHub Actions runs install (frozen lockfile) + lint + typecheck + test.
+GitHub Actions runs:
+
+- install (frozen lockfile)
+- lint
+- typecheck
+- test
+- smoke
+- backend runtime health check
+- OpenAPI snapshot check
+- api-client sync check
+
+## Security and Maintenance
+
+Configured:
+
+- Dependabot
+- CodeQL
+- branch protection for main
+- required checks for merge
 
 ## Versioning (SemVer)
 
-Версионирование следует SemVer: MAJOR.MINOR.PATCH
+Versioning follows SemVer: MAJOR.MINOR.PATCH
 
-- PATCH (x.x.1)
-  - багфиксы
-  - не ломает API и контракты
+- PATCH
+  - bug fixes
+  - no breaking API or contract changes
 
-- MINOR (x.1.0)
-  - новая функциональность
-  - обратная совместимость сохраняется
+- MINOR
+  - new backward-compatible behavior
 
-- MAJOR (1.0.0 → 2.0.0)
-  - любые изменения, ломающие API или контракты
-  - требует обновления клиентов (web/mobile/desktop)
+- MAJOR
+  - breaking changes
+  - requires client updates
 
 ## Changelog Policy
 
-- Каждый PR должен добавлять запись в `CHANGELOG.md` (раздел Unreleased)
-- При релизе:
-  - создаётся новая версия
-  - изменения переносятся из Unreleased в новую секцию версии
+- Every PR should update CHANGELOG.md
+- Releases are created from version tags: v\*
 
 ## OpenAPI Contract Rules
 
-- Backend API (`/api-json`) считается контрактом
-- Любое изменение API:
-  - должно обновить `api-client`
-  - должно обновить `openapi.snapshot.json`
-- CI упадёт, если контракт изменился без обновления snapshot
+- Backend API (/api-json) is treated as a contract
+- Any API change must update:
+  - packages/api-client/openapi.snapshot.json
+  - packages/api-client/src/gen
+- CI fails if the snapshot changed but was not updated
+- CI fails if api-client generation is out of date
+
+## Release
+
+- Releases are created by pushing tags like v1.1.0
+- Release workflow verifies that the tagged commit belongs to main
+- Release workflow runs lint, typecheck, test, and smoke before creating a GitHub Release
+
+## Runbooks
+
+- docs/runbooks/ci.md
+- docs/runbooks/openapi.md
+- docs/runbooks/release.md
+- docs/runbooks/dependencies.md
