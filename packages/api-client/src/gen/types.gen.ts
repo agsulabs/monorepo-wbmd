@@ -16,12 +16,142 @@ export type AppControllerHealthData = {
 
 export type AppControllerHealthResponses = {
     /**
-     * Health check
+     * Compatibility health check
      */
     200: HealthResponseDto;
 };
 
 export type AppControllerHealthResponse = AppControllerHealthResponses[keyof AppControllerHealthResponses];
+
+export type AppControllerLiveData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/health/live';
+};
+
+export type AppControllerLiveErrors = {
+    /**
+     * The Health Check is not successful
+     */
+    503: {
+        status?: string;
+        info?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        } | null;
+        error?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        } | null;
+        details?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        };
+    };
+};
+
+export type AppControllerLiveError = AppControllerLiveErrors[keyof AppControllerLiveErrors];
+
+export type AppControllerLiveResponses = {
+    /**
+     * The Health Check is successful
+     */
+    200: {
+        status?: string;
+        info?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        } | null;
+        error?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        } | null;
+        details?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        };
+    };
+};
+
+export type AppControllerLiveResponse = AppControllerLiveResponses[keyof AppControllerLiveResponses];
+
+export type AppControllerReadyData = {
+    body?: never;
+    path?: never;
+    query?: never;
+    url: '/health/ready';
+};
+
+export type AppControllerReadyErrors = {
+    /**
+     * The Health Check is not successful
+     */
+    503: {
+        status?: string;
+        info?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        } | null;
+        error?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        } | null;
+        details?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        };
+    };
+};
+
+export type AppControllerReadyError = AppControllerReadyErrors[keyof AppControllerReadyErrors];
+
+export type AppControllerReadyResponses = {
+    /**
+     * The Health Check is successful
+     */
+    200: {
+        status?: string;
+        info?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        } | null;
+        error?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        } | null;
+        details?: {
+            [key: string]: {
+                status: string;
+                [key: string]: unknown | string;
+            };
+        };
+    };
+};
+
+export type AppControllerReadyResponse = AppControllerReadyResponses[keyof AppControllerReadyResponses];
 
 export type ClientOptions = {
     baseUrl: string;

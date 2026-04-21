@@ -1,17 +1,4 @@
-/**
- * apps/backend/src/main.ts
- *
- * БАЗОВАЯ настройка backend для монорепы:
- * 1) Поднимаем Nest на 3001
- * 2) Включаем CORS для dev (web + desktop)
- * 3) Настраиваем Swagger:
- *    - UI:   http://localhost:3001/api
- *    - JSON: http://localhost:3001/api-json  (стабильно для генерации SDK)
- *
- * Дополнительно:
- * - слушаем 0.0.0.0 чтобы mobile мог подключаться по LAN IP
- */
-
+import { randomUUID } from 'node:crypto';
 import process from 'node:process';
 
 import { Logger } from '@nestjs/common';
@@ -21,18 +8,16 @@ import type { NextFunction, Request, Response } from 'express';
 
 import { AppModule } from './app.module';
 
+type RequestWithId = Request & {
+  requestId?: string;
+};
+
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule);
+
   app.enableShutdownHooks();
 
-  /**
-   * CORS для dev:
-   * - web:     Vite на 5173
-   * - desktop: Vite на 5174 (Tauri dev)
-   *
-   * Если поменяешь порт desktop — добавь сюда новый origin.
-   */
   app.enableCors({
     origin: [
       'http://localhost:5173',
@@ -41,59 +26,66 @@ async function bootstrap() {
       'http://127.0.0.1:5174',
     ],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Request-Id'],
+    exposedHeaders: ['X-Request-Id'],
   });
 
-  app.use((req: Request, res: Response, next: NextFunction) => {
+  app.use((req: RequestWithId, res: Response, next: NextFunction) => {
     const startedAt = Date.now();
+    const headerRequestId = req.header('x-request-id');
+    const requestId = headerRequestId?.trim() || randomUUID();
+
+    req.requestId = requestId;
+    res.setHeader('X-Request-Id', requestId);
+
+    const clientIp = req.ip || req.socket.remoteAddress || 'unknown';
+    let completed = false;
+
+    const logFinished = (event: 'finish' | 'close') => {
+      if (completed) {
+        return;
+      }
+
+      completed = true;
+      const durationMs = Date.now() - startedAt;
+
+      logger.log(
+        `[${requestId}] ${req.method} ${req.originalUrl} ${res.statusCode} - ${durationMs}ms - ip=${clientIp} - event=${event}`,
+      );
+    };
 
     res.on('finish', () => {
-      const durationMs = Date.now() - startedAt;
-      logger.log(`${req.method} ${req.originalUrl} ${res.statusCode} - ${durationMs}ms`);
+      logFinished('finish');
+    });
+
+    res.on('close', () => {
+      logFinished('close');
     });
 
     next();
   });
 
-  /**
-   * Swagger базовая конфигурация.
-   */
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Monorepo API')
     .setDescription('Backend API for web/desktop/mobile')
     .setVersion('1.0.0')
     .build();
 
-  /**
-   * Создаём OpenAPI документ (объект JSON).
-   */
   const document = SwaggerModule.createDocument(app, swaggerConfig);
 
-  /**
-   * Swagger UI по /api
-   */
   SwaggerModule.setup('api', app, document);
 
-  /**
-   * OpenAPI JSON по /api-json (стабильно для генерации).
-   *
-   * Важно:
-   * - Nest сам по себе не делает /api-json автоматически
-   * - поэтому делаем явный маршрут
-   */
   app.use('/api-json', (_req: Request, res: Response) => {
     res.setHeader('Content-Type', 'application/json');
     res.status(200).send(document);
   });
 
-  /**
-   * Важно для mobile:
-   * - 0.0.0.0 позволяет принимать запросы с других устройств в LAN
-   */
   await app.listen(3001, '0.0.0.0');
 
   logger.log('Backend started on http://localhost:3001');
   logger.log('Health: http://localhost:3001/health');
+  logger.log('Health live: http://localhost:3001/health/live');
+  logger.log('Health ready: http://localhost:3001/health/ready');
   logger.log('Swagger UI: http://localhost:3001/api');
   logger.log('OpenAPI JSON: http://localhost:3001/api-json');
 }
