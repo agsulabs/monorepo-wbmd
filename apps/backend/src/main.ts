@@ -12,6 +12,7 @@
  * - слушаем 0.0.0.0 чтобы mobile мог подключаться по LAN IP
  */
 
+import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import type { Request, Response } from 'express';
@@ -19,6 +20,7 @@ import type { Request, Response } from 'express';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  const logger = new Logger('Bootstrap');
   const app = await NestFactory.create(AppModule);
 
   /**
@@ -75,6 +77,11 @@ async function bootstrap() {
    * - 0.0.0.0 позволяет принимать запросы с других устройств в LAN
    */
   await app.listen(3001, '0.0.0.0');
+
+  logger.log('Backend started on http://localhost:3001');
+  logger.log('Health: http://localhost:3001/health');
+  logger.log('Swagger UI: http://localhost:3001/api');
+  logger.log('OpenAPI JSON: http://localhost:3001/api-json');
 }
 
 bootstrap();
