@@ -1,0 +1,82 @@
+name: Feature request
+description: Suggest an improvement or new capability for an app, package, workflow, or repository tooling
+title: 'feat: '
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement.
+
+        Please describe the problem, the proposed solution, and any important context.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Where should this change happen?
+      options:
+        - apps/web
+        - apps/mobile
+        - apps/desktop
+        - apps/backend
+        - packages/api-client
+        - packages/contracts
+        - CI/CD
+        - repository tooling
+        - documentation
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What problem are you trying to solve?
+      placeholder: Describe the current limitation or pain point
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: What would you like to happen?
+      placeholder: Describe the desired behavior or change
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any other approaches you considered
+    validations:
+      required: false
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Expected impact
+      description: Why is this useful? Who benefits?
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional context
+      description: Links, screenshots, references, or rollout notes
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Confirmation
+      options:
+        - label: I searched existing issues before creating this request
+          required: true
+        - label: This request is specific enough to discuss and implement
+          required: true
