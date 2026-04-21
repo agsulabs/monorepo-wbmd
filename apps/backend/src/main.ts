@@ -12,6 +12,8 @@
  * - слушаем 0.0.0.0 чтобы mobile мог подключаться по LAN IP
  */
 
+import process from 'node:process';
+
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -84,4 +86,8 @@ async function bootstrap() {
   logger.log('OpenAPI JSON: http://localhost:3001/api-json');
 }
 
-bootstrap();
+bootstrap().catch((error: unknown) => {
+  const logger = new Logger('Bootstrap');
+  logger.error('Failed to start backend', error);
+  process.exit(1);
+});
