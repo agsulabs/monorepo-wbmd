@@ -1,0 +1,19 @@
+# Default owner for the whole repository
+* @agsulabs
+
+# Apps
+/apps/web/ @agsulabs
+/apps/mobile/ @agsulabs
+/apps/desktop/ @agsulabs
+/apps/backend/ @agsulabs
+
+# Packages
+/packages/api-client/ @agsulabs
+/packages/contracts/ @agsulabs
+
+# GitHub / repo management
+/.github/ @agsulabs
+/docs/ @agsulabs
+/README.md @agsulabs
+/SECURITY.md @agsulabs
+/CONTRIBUTING.md @agsulabs
