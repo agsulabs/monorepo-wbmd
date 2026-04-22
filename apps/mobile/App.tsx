@@ -1,20 +1,16 @@
-import {API_URL_ANDROID, API_URL_IOS} from '@env';
-import {client, appControllerHealth} from '@monorepo/api-client';
+import {appControllerHealth} from '@monorepo/api-client';
 import React from 'react';
 import {SafeAreaView, Text} from 'react-native';
-import {Platform} from 'react-native';
 
-type State = {text: string};
-
-const API_BASE_URL = Platform.OS === 'android' ? API_URL_ANDROID : API_URL_IOS;
+type State = {
+  text: string;
+};
 
 export default class App extends React.Component<Record<string, never>, State> {
   state: State = {text: 'loading...'};
 
   async componentDidMount() {
     try {
-      client.setConfig({baseUrl: API_BASE_URL});
-
       const res: unknown = await appControllerHealth();
 
       this.setState({
