@@ -1,8 +1,7 @@
 import type { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { useSession } from '../lib/use-session';
-
+import { useSession } from '@/entities/session';
 import { isAuthenticated } from '@/entities/user';
 import { appRoutes } from '@/shared/config/routes';
 

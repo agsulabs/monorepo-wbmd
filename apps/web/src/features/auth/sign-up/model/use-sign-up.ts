@@ -1,7 +1,7 @@
 import type { SignUpResult } from './result';
 import type { SignUpFormValues } from './types';
 
-import { useSessionActions } from '@/features/auth/session';
+import { useSessionActions } from '@/entities/session';
 import { signUpRequest } from '@/features/auth/sign-up/api';
 
 export function useSignUp() {

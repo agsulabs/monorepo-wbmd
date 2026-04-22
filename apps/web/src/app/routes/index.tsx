@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { SessionGuard } from '@/features/auth/session';
+import { SessionGuard } from './guards/session-guard';
+
 import { ProfilePage } from '@/pages/profile';
 import { SignInPage } from '@/pages/sign-in';
 import { SignUpPage } from '@/pages/sign-up';

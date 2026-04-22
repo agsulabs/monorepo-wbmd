@@ -1,7 +1,7 @@
 import type { SignInResult } from './result';
 import type { SignInFormValues } from './types';
 
-import { useSessionActions } from '@/features/auth/session';
+import { useSessionActions } from '@/entities/session';
 import { signInRequest } from '@/features/auth/sign-in/api';
 
 export function useSignIn() {

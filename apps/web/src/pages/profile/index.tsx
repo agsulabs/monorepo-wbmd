@@ -1,5 +1,5 @@
+import { SessionStatus, useSession } from '@/entities/session';
 import { UserCard, isAuthenticated } from '@/entities/user';
-import { SessionStatus, useSession } from '@/features/auth/session';
 import { SignOutButton } from '@/features/auth/sign-out';
 import { ProfileShell } from '@/widgets/profile';
 
