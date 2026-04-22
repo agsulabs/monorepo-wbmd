@@ -34,7 +34,7 @@
     "mobile:pods": "bash -lc 'cd apps/mobile/ios && bundle exec pod install'",
     "mobile:pods:clean": "bash -lc 'cd apps/mobile/ios && rm -rf Pods Podfile.lock && bundle exec pod install'",
     "prepare": "husky",
-    "smoke": "pnpm backend:build && pnpm web:build && pnpm -C apps/desktop ui:build && pnpm -C apps/mobile typecheck && pnpm -C apps/mobile test -- --runInBand"
+    "smoke": "pnpm backend:build && pnpm web:build && pnpm -C apps/desktop ui:build && pnpm -C apps/desktop test && pnpm -C apps/mobile typecheck && pnpm -C apps/mobile test -- --runInBand && pnpm -C packages/contracts test && pnpm -C packages/api-client test"
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,cjs,mjs,cts,mts}": [

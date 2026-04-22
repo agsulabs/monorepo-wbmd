@@ -1,6 +1,9 @@
 /**
- * @format
+ * Entry point for the mobile app.
+ * Init modules must run before App is registered.
  */
+
+import './shared/api/init';
 
 import {AppRegistry} from 'react-native';
 

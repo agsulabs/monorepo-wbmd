@@ -1,11 +1,3 @@
-/**
- * apps/web/src/main.tsx
- *
- * Main должен быть “чистым”:
- * - импорт init
- * - render App
- */
-
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 

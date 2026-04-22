@@ -1,14 +1,3 @@
-// eslint.config.js
-// Flat config for a pnpm/turbo TypeScript monorepo.
-// Includes:
-// - TypeScript linting everywhere
-// - React linting only for apps/web
-// - Prettier compatibility (disables conflicting formatting rules)
-// - Monorepo architecture guards:
-//   - forbid app -> app imports
-//   - forbid deep imports into package internals
-//   - allow public API imports only
-
 import js from '@eslint/js';
 import globals from 'globals';
 import tseslint from '@typescript-eslint/eslint-plugin';
@@ -22,11 +11,9 @@ import importPlugin from 'eslint-plugin-import';
 import unusedImportsPlugin from 'eslint-plugin-unused-imports';
 
 const TS_FILES = ['**/*.{ts,tsx,cts,mts}'];
-const JS_FILES = ['**/*.{js,jsx,cjs,mjs}'];
 const ALL_CODE_FILES = ['**/*.{ts,tsx,cts,mts,js,jsx,cjs,mjs}'];
 
 export default [
-  // Global ignores for the whole monorepo
   {
     ignores: [
       '**/node_modules/**',
@@ -39,10 +26,8 @@ export default [
     ],
   },
 
-  // Base recommended rules
   js.configs.recommended,
 
-  // Shared config for all code files
   {
     files: ALL_CODE_FILES,
     languageOptions: {
@@ -64,9 +49,6 @@ export default [
 
       'unused-imports/no-unused-imports': 'error',
 
-      // Monorepo guardrails:
-      // 1) apps must not import other apps
-      // 2) packages must be imported only via package root public API
       'no-restricted-imports': [
         'error',
         {
@@ -95,13 +77,16 @@ export default [
               message:
                 'Do not use deep imports from @monorepo/contracts. Import only from the package root public API.',
             },
+            {
+              group: ['@env'],
+              message: 'Do not import @env outside the mobile config layer.',
+            },
           ],
         },
       ],
     },
   },
 
-  // TypeScript config
   {
     files: TS_FILES,
     languageOptions: {
@@ -132,9 +117,8 @@ export default [
     },
   },
 
-  // React only for web app
   {
-    files: ['apps/web/**/*.{ts,tsx,js,jsx}'],
+    files: ['apps/web/**/*.{ts,tsx,js,jsx}', 'apps/desktop/**/*.{ts,tsx,js,jsx}'],
     plugins: {
       react: reactPlugin,
       'react-hooks': reactHooksPlugin,
@@ -157,7 +141,13 @@ export default [
     },
   },
 
-  // Node env for config files
+  {
+    files: ['apps/mobile/shared/config/api.ts'],
+    rules: {
+      'no-restricted-imports': 'off',
+    },
+  },
+
   {
     files: [
       '**/*.config.{js,cjs,mjs,ts}',
@@ -168,11 +158,10 @@ export default [
     ],
     languageOptions: {
       globals: globals.node,
-      sourceType: 'commonjs',
+      sourceType: 'module',
     },
   },
 
-  // Node ESM scripts
   {
     files: ['packages/**/scripts/**/*.{js,mjs,ts}'],
     languageOptions: {
@@ -181,7 +170,6 @@ export default [
     },
   },
 
-  // CommonJS build artifacts kept in source folders
   {
     files: ['packages/api-client/src/**/*.js'],
     languageOptions: {
@@ -190,7 +178,6 @@ export default [
     },
   },
 
-  // Jest env for tests
   {
     files: ['**/__tests__/**/*.{ts,tsx,js,jsx}', '**/*.{test,spec}.{ts,tsx,js,jsx}'],
     languageOptions: {
@@ -198,6 +185,5 @@ export default [
     },
   },
 
-  // Prettier compatibility layer: must be last
   prettier,
 ];

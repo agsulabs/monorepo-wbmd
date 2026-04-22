@@ -6,4 +6,16 @@ export const appControllerHealth = (options) => {
         ...options
     });
 };
+export const appControllerLive = (options) => {
+    return (options?.client ?? _heyApiClient).get({
+        url: '/health/live',
+        ...options
+    });
+};
+export const appControllerReady = (options) => {
+    return (options?.client ?? _heyApiClient).get({
+        url: '/health/ready',
+        ...options
+    });
+};
 //# sourceMappingURL=sdk.gen.js.map

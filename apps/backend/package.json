@@ -6,7 +6,7 @@
     "build": "pnpm exec nest build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint .",
-    "test": "node -e \"process.exit(0)\"",
+    "test": "tsc -p tsconfig.json --noEmit",
     "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
   },
   "devDependencies": {

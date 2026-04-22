@@ -5,7 +5,8 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios --terminal zsh",
-    "lint": "eslint . --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "start": "react-native start",
     "test": "jest",
     "typecheck": "tsc -p tsconfig.json --noEmit"
