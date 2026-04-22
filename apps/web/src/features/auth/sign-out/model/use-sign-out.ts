@@ -1,4 +1,4 @@
-import { useSessionActions } from '@/features/auth/session';
+import { useSessionActions } from '@/entities/session';
 import { signOutRequest } from '@/features/auth/sign-out/api';
 
 export function useSignOut() {

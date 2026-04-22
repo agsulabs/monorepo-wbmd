@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { useEffect, useMemo, useState } from 'react';
 
+import { SessionContext, initialSessionState, useSessionBootstrap } from '@/entities/session';
 import type { User } from '@/entities/user';
-import { SessionContext, initialSessionState, useSessionBootstrap } from '@/features/auth/session';
 
 type SessionProviderProps = {
   children: ReactNode;
