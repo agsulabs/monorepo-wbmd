@@ -174,8 +174,8 @@ importers:
         specifier: 0.79.1
         version: 0.79.1(@babel/core@7.29.0)
       '@react-native/typescript-config':
-        specifier: 0.79.1
-        version: 0.79.1
+        specifier: 0.85.2
+        version: 0.85.2
       '@types/jest':
         specifier: ^29.5.13
         version: 29.5.14
@@ -1693,8 +1693,8 @@ packages:
   '@react-native/normalize-colors@0.79.1':
     resolution: {integrity: sha512-Fj12xKyihZhrFH45ruqECd2JVx9lyYe+dyxO7MYgkqY6UENsSS3JKcfzjSNBZLW7NXts6JkbaqLQPwaHmPF7QA==}
 
-  '@react-native/typescript-config@0.79.1':
-    resolution: {integrity: sha512-ZeCui5MYZxVOedw9feoONuNF0lup0DvcUGvLeTyQitZoPGV4NSz9jzC1XcxMsLb9M4a2FGUhopmgrxuXgyERFg==}
+  '@react-native/typescript-config@0.85.2':
+    resolution: {integrity: sha512-kJAIGIQdYSf2llBq28EuEjgkK0ELaOLs9hzZunhwQUWICqUuad4yJtqL1JioFeFrkzN3NvdfgM7eBN4Se4Tq9w==}
 
   '@react-native/virtualized-lists@0.79.1':
     resolution: {integrity: sha512-v1KeqJeVJXjc2mewjKQYSay7D7+VSacxryejuuVXlPE9E9wVbzMPCfPjbIS8C9nMC7a4rsRFilX7RVKYkeZaGg==}
@@ -7584,7 +7584,7 @@ snapshots:
 
   '@react-native/normalize-colors@0.79.1': {}
 
-  '@react-native/typescript-config@0.79.1': {}
+  '@react-native/typescript-config@0.85.2': {}
 
   '@react-native/virtualized-lists@0.79.1(@types/react@19.2.13)(react-native@0.79.1(@babel/core@7.29.0)(@react-native-community/cli@18.0.0(typescript@5.0.4))(@types/react@19.2.13)(react@19.0.0))(react@19.0.0)':
     dependencies:
